@@ -2,7 +2,7 @@
 
 using namespace std;
 
-vector<vector<int>> multiply_sequential(const vector<vector<int>>& a, const vector<vector<int>>& b) {
+vector<vector<int>> multiplySequential(const vector<vector<int>>& a, const vector<vector<int>>& b) {
     vector<vector<int>> result(a.size(), vector<int>(b[0].size(), 0));
 
     for (size_t i = 0; i < a.size(); ++i) {

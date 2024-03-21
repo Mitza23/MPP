@@ -25,7 +25,7 @@ void test_multiply_sequential() {
     generate_test_data();
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 3, 3);
     vector<vector<int>> b = readMatrixFromFile("b.pkl", 3, 3);
-    vector<vector<int>> result = multiply_sequential(a, b);
+    vector<vector<int>> result = multiplySequential(a, b);
 
     for (const auto &row: result) {
         for (const auto &elem: row) {
@@ -42,7 +42,7 @@ void test_multiply_multithreading_row(const int nrThreads) {
     generateData(1024, 1024, 512, "a.pkl", "b.pkl");
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 1024, 512);
     vector<vector<int>> b = readMatrixFromFile("b.pkl", 512, 1024);
-    vector<vector<int>> expected = multiply_sequential(a, b);
+    vector<vector<int>> expected = multiplySequential(a, b);
     vector<vector<int>> c = multiplyMultithreadingRows(a, b, nrThreads);
 
     assert(c == expected);
@@ -57,32 +57,46 @@ void test_multiply_multithreading_block() {
     generate_test_data();
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 3, 3);
     vector<vector<int>> b = readMatrixFromFile("b.pkl", 3, 3);
-    vector<vector<int>> expected = multiply_sequential(a, b);
+    vector<vector<int>> expected = multiplySequential(a, b);
     vector<vector<int>> c = multiplyMultithreadingBlocks(a, b, 2);
 
     assert(c == expected);
     cout << "Test passed.\n";
 }
 
+//////////////////////////////////////////////////
+
 double benchmarkMultiplyMultithreadingRow(const int nrThreads) {
-    auto start = chrono::high_resolution_clock::now();  // Start timing here
+//    auto start = chrono::high_resolution_clock::now();
 
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 1024, 512);
     vector<vector<int>> b = readMatrixFromFile("b.pkl", 512, 1024);
-    vector<vector<int>> c = multiplyMultithreadingRows(a, b, nrThreads);
 
-    auto end = chrono::high_resolution_clock::now();  // End timing here
+    auto start = chrono::high_resolution_clock::now();
+    vector<vector<int>> c = multiplyMultithreadingRows(a, b, nrThreads);
+    auto end = chrono::high_resolution_clock::now();
+
+    writeMatrixToFile(c, "c.pkl");
+
+//    auto end = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed = end - start;
+
     return elapsed.count();
 }
 
 double benchmarkMultiplyMultithreadingBlock(const int nrThreads) {
-    auto start = chrono::high_resolution_clock::now();  // Start timing here
+//    auto start = chrono::high_resolution_clock::now();
+
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 1024, 512);
     vector<vector<int>> b = readMatrixFromFile("b.pkl", 512, 1024);
-    vector<vector<int>> c = multiplyMultithreadingBlocks(a, b, nrThreads);
 
-    auto end = chrono::high_resolution_clock::now();  // End timing here
+    auto start = chrono::high_resolution_clock::now();
+    vector<vector<int>> c = multiplyMultithreadingBlocks(a, b, nrThreads);
+    auto end = chrono::high_resolution_clock::now();
+
+    writeMatrixToFile(c, "c.pkl");
+
+//    auto end = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed = end - start;
 
     return elapsed.count();
@@ -90,7 +104,7 @@ double benchmarkMultiplyMultithreadingBlock(const int nrThreads) {
 
 double runBenchmark(double (*benchmarkFunction)(const int), const int nrThreads) {
     double totalTime = 0;
-    for(int i = 0 ; i < 10 ; i++) {
+    for (int i = 0; i < 10; i++) {
         cout << ". . . ";
         totalTime += benchmarkFunction(nrThreads);
     }
@@ -121,14 +135,20 @@ void assessPerformance(double (*benchmarkFunction)(const int)) {
 }
 
 double benchmarkMultiplySequential() {
-    generateData(1024, 1024, 512, "a.pkl", "b.pkl");
+//    auto start = chrono::high_resolution_clock::now();
+
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 1024, 512);
     vector<vector<int>> b = readMatrixFromFile("b.pkl", 512, 1024);
 
-    auto start = chrono::high_resolution_clock::now();  // Start timing here
-    multiply_sequential(a, b);
-    auto end = chrono::high_resolution_clock::now();  // End timing here
+    auto start = chrono::high_resolution_clock::now();
+    vector<vector<int>> c = multiplySequential(a, b);
+    auto end = chrono::high_resolution_clock::now();
+
+    writeMatrixToFile(c, "c.pkl");
+
+//    auto end = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed = end - start;
+
     return elapsed.count();
 }
 
@@ -136,10 +156,11 @@ void assessSequentialPerformance() {
     generateData(1024, 1024, 512, "a.pkl", "b.pkl");
 
     double totalTime = 0;
-    for(int i = 0 ; i < 10 ; i++) {
+    for (int i = 0; i < 10; i++) {
         cout << ". . . ";
         totalTime += benchmarkMultiplySequential();
     }
+    cout << endl;
 
     cout << "Performance assessment for sequential multiplication: " << totalTime / 10 << " seconds.\n\n";
 }
@@ -147,13 +168,16 @@ void assessSequentialPerformance() {
 int main() {
     cout << "Testing MultiplySequential \n\n";
     assessSequentialPerformance();
-//    cout << "Testing MultiplyMultithreadingRow \n\n";
-//    assessPerformance(benchmarkMultiplyMultithreadingRow);
-//
-//    cout << "\n\n\n\n";
-//
-//    cout << "Testing MultiplyMultithreadingBlock \n\n";
-//    assessPerformance(benchmarkMultiplyMultithreadingBlock);
+
+    cout << "\n\n\n\n";
+
+    cout << "Testing MultiplyMultithreadingRow \n\n";
+    assessPerformance(benchmarkMultiplyMultithreadingRow);
+
+    cout << "\n\n\n\n";
+
+    cout << "Testing MultiplyMultithreadingBlock \n\n";
+    assessPerformance(benchmarkMultiplyMultithreadingBlock);
     return 0;
 
 }

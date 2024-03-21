@@ -1,45 +1,52 @@
+D:\Master\Sem_2\MPP\cpp_implementations\cmake-build-debug\cpp_implementations.exe
 Testing MultiplySequential
+
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Performance assessment for sequential multiplication: 4.84453 seconds.
+Performance assessment for sequential multiplication: 4.6156 seconds.
+
+
+
 
 
 Testing MultiplyMultithreadingRow
+
 Starting performance assessment for 4 threads.
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Performance assessment for 4 threads: 1.59272 seconds.
+Performance assessment for 4 threads: 1.7448 seconds.
 
 Starting performance assessment for 8 threads.
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Performance assessment for 8 threads: 1.76967 seconds.
+Performance assessment for 8 threads: 2.13927 seconds.
 
 Starting performance assessment for 16 threads.
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Performance assessment for 16 threads: 2.20765 seconds.
+Performance assessment for 16 threads: 2.1023 seconds.
 
 Starting performance assessment for 32 threads.
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Performance assessment for 32 threads: 1.92743 seconds.
+Performance assessment for 32 threads: 2.14097 seconds.
 
 
 
 
 
 Testing MultiplyMultithreadingBlock
+
 Starting performance assessment for 4 threads.
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Performance assessment for 4 threads: 2.02139 seconds.
+Performance assessment for 4 threads: 2.07249 seconds.
 
 Starting performance assessment for 8 threads.
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Performance assessment for 8 threads: 2.03394 seconds.
+Performance assessment for 8 threads: 2.22026 seconds.
 
 Starting performance assessment for 16 threads.
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Performance assessment for 16 threads: 1.96328 seconds.
+Performance assessment for 16 threads: 2.03638 seconds.
 
 Starting performance assessment for 32 threads.
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-Performance assessment for 32 threads: 1.9734 seconds.
+Performance assessment for 32 threads: 1.97589 seconds.
 
 
 Process finished with exit code 0
