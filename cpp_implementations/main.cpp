@@ -37,7 +37,7 @@ void test_multiply_sequential() {
 
 
 void test_multiply_multithreading_row(const int nrThreads) {
-    auto start = high_resolution_clock::now();  // Start timing here
+    auto start = chrono::high_resolution_clock::now();  // Start timing here
 
     generateData(1024, 1024, 512, "a.pkl", "b.pkl");
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 1024, 512);
@@ -47,8 +47,8 @@ void test_multiply_multithreading_row(const int nrThreads) {
 
     assert(c == expected);
 
-    auto end = high_resolution_clock::now();  // End timing here
-    duration<double> elapsed = end - start;
+    auto end = chrono::high_resolution_clock::now();  // End timing here
+    chrono::duration<double> elapsed = end - start;
 
     cout << "Test passed for " << nrThreads << "threads in " << elapsed.count() << " seconds.\n";
 }
@@ -67,37 +67,37 @@ void test_multiply_multithreading_block() {
 //////////////////////////////////////////////////
 
 double benchmarkMultiplyMultithreadingRow(const int nrThreads) {
-//    auto start = high_resolution_clock::now();
+//    auto start = chrono::high_resolution_clock::now();
 
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 1024, 512);
     vector<vector<int>> b = readMatrixFromFile("b.pkl", 512, 1024);
 
-    auto start = high_resolution_clock::now();
+    auto start = chrono::high_resolution_clock::now();
     vector<vector<int>> c = multiplyMultithreadingRows(a, b, nrThreads);
-    auto end = high_resolution_clock::now();
+    auto end = chrono::high_resolution_clock::now();
 
     writeMatrixToFile(c, "c.pkl");
 
-//    auto end = high_resolution_clock::now();
-    duration<double> elapsed = end - start;
+//    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = end - start;
 
     return elapsed.count();
 }
 
 double benchmarkMultiplyMultithreadingBlock(const int nrThreads) {
-//    auto start = high_resolution_clock::now();
+//    auto start = chrono::high_resolution_clock::now();
 
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 1024, 512);
     vector<vector<int>> b = readMatrixFromFile("b.pkl", 512, 1024);
 
-    auto start = high_resolution_clock::now();
+    auto start = chrono::high_resolution_clock::now();
     vector<vector<int>> c = multiplyMultithreadingBlocks(a, b, nrThreads);
-    auto end = high_resolution_clock::now();
+    auto end = chrono::high_resolution_clock::now();
 
     writeMatrixToFile(c, "c.pkl");
 
-//    auto end = high_resolution_clock::now();
-    duration<double> elapsed = end - start;
+//    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = end - start;
 
     return elapsed.count();
 }
@@ -135,19 +135,19 @@ void assessPerformance(double (*benchmarkFunction)(const int)) {
 }
 
 double benchmarkMultiplySequential() {
-//    auto start = high_resolution_clock::now();
+//    auto start = chrono::high_resolution_clock::now();
 
     vector<vector<int>> a = readMatrixFromFile("a.pkl", 1024, 512);
     vector<vector<int>> b = readMatrixFromFile("b.pkl", 512, 1024);
 
-    auto start = high_resolution_clock::now();
+    auto start = chrono::high_resolution_clock::now();
     vector<vector<int>> c = multiplySequential(a, b);
-    auto end = high_resolution_clock::now();
+    auto end = chrono::high_resolution_clock::now();
 
     writeMatrixToFile(c, "c.pkl");
 
-//    auto end = high_resolution_clock::now();
-    duration<double> elapsed = end - start;
+//    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = end - start;
 
     return elapsed.count();
 }
