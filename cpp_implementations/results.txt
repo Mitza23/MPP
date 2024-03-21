@@ -1,0 +1,45 @@
+Testing MultiplySequential
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Performance assessment for sequential multiplication: 4.84453 seconds.
+
+
+Testing MultiplyMultithreadingRow
+Starting performance assessment for 4 threads.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Performance assessment for 4 threads: 1.59272 seconds.
+
+Starting performance assessment for 8 threads.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Performance assessment for 8 threads: 1.76967 seconds.
+
+Starting performance assessment for 16 threads.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Performance assessment for 16 threads: 2.20765 seconds.
+
+Starting performance assessment for 32 threads.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Performance assessment for 32 threads: 1.92743 seconds.
+
+
+
+
+
+Testing MultiplyMultithreadingBlock
+Starting performance assessment for 4 threads.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Performance assessment for 4 threads: 2.02139 seconds.
+
+Starting performance assessment for 8 threads.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Performance assessment for 8 threads: 2.03394 seconds.
+
+Starting performance assessment for 16 threads.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Performance assessment for 16 threads: 1.96328 seconds.
+
+Starting performance assessment for 32 threads.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Performance assessment for 32 threads: 1.9734 seconds.
+
+
+Process finished with exit code 0
