@@ -17,6 +17,7 @@ const double Ay = 1.0;            // Length of the cavity in y-direction
 const double Az = 1.0;            // Length of the cavity in z-direction
 const int maxIterations = 1000; // Maximum number of iterations
 const int step = 50;             // Number of steps to output data
+const double tolerance = 1e-5;    // Convergence tolerance
 
 void recordParameters(const std::vector<double> &u,
                       const std::vector<double> &v,
@@ -217,7 +218,7 @@ int main(int argc, char **argv) {
             recordParameters(u, v, t, N1, N2, N3, iteration);
         }
 
-        if (err_u < 1e-9 && err_v < 1e-9 && err_T < 1e-9) {
+        if (err_u < tolerance && err_v < tolerance && err_T < tolerance) {
             stop = true;
             if (rank == 0)
                 recordParameters(u, v, t, N1, N2, N3, iteration);
