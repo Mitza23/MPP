@@ -15,9 +15,9 @@ const int N = 10;                 // Axis length
 const double Ax = 1.0;            // Length of the cavity in x-direction
 const double Ay = 1.0;            // Length of the cavity in y-direction
 const double Az = 1.0;            // Length of the cavity in z-direction
-const int maxIterations = 1000; // Maximum number of iterations
-const int step = 50;             // Number of steps to output data
-const double tolerance = 1e-5;    // Convergence tolerance
+const int maxIterations = 10000; // Maximum number of iterations
+const int step = 500;             // Number of steps to output data
+const double tolerance = 1e-9;    // Convergence tolerance
 
 void recordParameters(const std::vector<double> &u,
                       const std::vector<double> &v,
